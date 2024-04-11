@@ -6,7 +6,7 @@ Main file
 import logging
 import re
 
-RedactingFormatter = __import__('../filtered_logger').RedactingFormatter
+RedactingFormatter = __import__('filtered_logger').RedactingFormatter
 
 message = "name=Bob;email=bob@dylan.com;ssn=000-123-0000;password=bobby2019;"
 log_record = logging.LogRecord("my_logger", logging.INFO, None, None, message, None, None)
