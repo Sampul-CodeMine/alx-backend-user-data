@@ -21,8 +21,8 @@ def hash_password(password: str) -> bytes:
 def is_valid(hashed_password: bytes, password: str) -> bool:
     """This is a function that verifies a plaintext password against a hashed
     password:
-    The function cross-checkes if the plaintext passed by the user as a password
-    exactly matches the hashed password saved in a database
+    The function cross-checkes if the plaintext passed by the user as a
+    password exactly matches the hashed password saved in a database
 
     Args:
         hashed_password (bytes): the password stored in the DB
