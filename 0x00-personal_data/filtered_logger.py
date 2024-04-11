@@ -68,13 +68,15 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         MySQLConnection object
     """
     db_host = env.get('PERSONAL_DATA_DB_HOST', 'localhost')
-    db_name = env.get('PERSONAL_DATA_DB_NAME', '')
+    db_name = env.get('PERSONAL_DATA_DB_NAME')
     db_user = env.get('PERSONAL_DATA_DB_USERNAME', 'root')
     db_pass = env.get('PERSONAL_DATA_DB_PASSWORD', '')
 
-    db_con = mysql.connector.connect(host=db_host, user=db_user,
-                                     password=db_pass,
-                                     database=db_name, port=3306)
+    db_con = mysql.connector.connection.MySQLConnection(host=db_host,
+                                                        user=db_user,
+                                                        password=db_pass,
+                                                        database=db_name,
+                                                        port=3306)
     return db_con
 
 
