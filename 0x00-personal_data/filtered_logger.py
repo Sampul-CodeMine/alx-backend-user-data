@@ -5,7 +5,9 @@ This is a module for handling personal data
 Learning about PII, nonPII and Personal Data
 """
 import logging
+import mysql.connector
 import re
+from os import environ as env
 from typing import List
 
 
@@ -56,6 +58,24 @@ def get_logger() -> logging.Logger:
     user_data_log.addHandler(stream_handler)
 
     return user_data_log
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    """
+    This is a function to establish a connection with a MySQL Database
+
+    Returns:
+        MySQLConnection object
+    """
+    db_host = env.get('PERSONAL_DATA_DB_HOST', 'localhost')
+    db_name = env.get('PERSONAL_DATA_DB_NAME', '')
+    db_user = env.get('PERSONAL_DATA_DB_USERNAME', 'root')
+    db_pass = env.get('PERSONAL_DATA_DB_PASSWORD', '')
+
+    db_con = mysql.connector.connect(host=db_host, user=db_user,
+                                     password=db_pass,
+                                     database=db_name, port=3306)
+    return db_con
 
 
 class RedactingFormatter(logging.Formatter):
