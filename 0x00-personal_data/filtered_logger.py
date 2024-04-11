@@ -112,3 +112,31 @@ class RedactingFormatter(logging.Formatter):
                                   record.getMessage(),
                                   self.SEPARATOR)
         return super(RedactingFormatter, self).format(record)
+
+
+def main():
+    """This is a function that acts as a program runner.
+    This is a function that does not take an argument nor returns a value.
+    It retrieves data from the MySQL database and logs to the console.
+    """
+    db_con = get_db()
+    cursor = db_con.cursor()
+    query = "SELECT * FROM `users`;"
+    cursor.execute(query)
+    # fields = []
+    # for field in cursor.description:
+    #     fields.append(field[0])
+    fields = [field[0] for field in cursor.description]
+
+    user_logger = get_logger()
+
+    for itm_row in cursor:
+        row = ''.join(f'{f}={str(idx)}; ' for idx, f in zip(itm_row, fields))
+        user_logger.info(row.strip())
+
+    cursor.close()
+    db_con.close()
+
+
+if __name__ == '__main__':
+    main()
