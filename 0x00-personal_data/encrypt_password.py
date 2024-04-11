@@ -33,5 +33,5 @@ def is_valid(hashed_password: bytes, password: str) -> bool:
         (bool): True if it matches else False
     """
     if password and hashed_password:
-        return True if bc.checkpw(password.encode(),
+        return True if bc.checkpw(str.encode(password),
                                   hashed_password) else False
