@@ -15,7 +15,7 @@ def hash_password(password: str) -> bytes:
     Returns:
         (bytes) - The hashed or encrypted password
     """
-    return bc.hashpw(password.encode('utf-8'), bc.gensalt())
+    return bc.hashpw(password.encode(), bc.gensalt())
 
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
@@ -31,4 +31,4 @@ def is_valid(hashed_password: bytes, password: str) -> bool:
     Returns:
         (bool): True if it matches else False
     """
-    return bc.checkpw(password.encode('utf-8'), hashed_password)
+    return True if bc.checkpw(password.encode(), hashed_password) else False
