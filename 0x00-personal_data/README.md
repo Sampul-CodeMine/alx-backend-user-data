@@ -40,7 +40,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 ---
 
-> Click here for the <a href="https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/misc/2019/11/a2e00974ce6b41460425.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240411%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240411T072514Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=bbc4d268790af689dff7f3a39838bc39cef8dbc3962ca7708add30c2b5dae190">user_data.csv</a>
+> Click here for the <a href="https://github.com/Sampul-CodeMine/alx-backend-user-data/blob/main/0x00-personal_data/user_data.csv" target="_blank">user_data.csv</a>
 
 ---
 
