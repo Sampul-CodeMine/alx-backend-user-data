@@ -3,6 +3,7 @@
 from typing import TypeVar, Tuple
 from api.v1.auth.auth import Auth
 import base64
+from models.user import User
 
 
 class BasicAuth(Auth):
@@ -86,9 +87,8 @@ class BasicAuth(Auth):
         Returns:
             User(Instance of the User object)
         """
-        if user_email is None or not type(user_email) == str:
-            return None
-        if user_pwd is None or not type(user_pwd) == str:
+        if ((user_email is None) or (not isinstance(user_email, str)) or
+           (user_pwd is None) or (not isinstance(user_pwd, str))):
             return None
         try:
             users_obj = User.search({'email': user_email})
