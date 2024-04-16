@@ -13,7 +13,8 @@ class Auth:
 
         Args:
             path(str): The path to navigate to.
-            excluded_paths(List[str]): a list of path to exclude from the search.
+            excluded_paths(List[str]): a list of path to exclude from the
+            search.
 
         Returns:
             False
