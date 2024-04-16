@@ -1,4 +1,4 @@
-.venv/
+SimpleAPI/.venv/
 __pycache__/*
 **/SimpleAPI/__pycache__/*
 **/SimpleAPI/api/__pycache__/*
