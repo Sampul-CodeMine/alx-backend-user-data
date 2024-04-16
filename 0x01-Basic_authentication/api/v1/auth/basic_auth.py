@@ -18,12 +18,12 @@ class BasicAuth(Auth):
             authorization_header(str): header of the authorization request
 
         Returns:
-            None if authorization_header is None or not a string or doesnt start
-            by Basic with a space at the end
+            None if authorization_header is None or not a string or doesnt
+            start by Basic with a space at the end
             (str) - The string or value after the word Basic
         """
         if ((authorization_header is None) or
-            (type(authorization_header) is not str) or
-            (not authorization_header.startswith('Basic '))):
+           (type(authorization_header) is not str) or
+           (not authorization_header.startswith('Basic '))):
             return None
         return authorization_header.split(" ")[-1]
