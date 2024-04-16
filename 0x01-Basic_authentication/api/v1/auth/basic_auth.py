@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Module of Authenitcation using Basic Access Authentication"""
-from typing import TypeVar
+from typing import TypeVar, Tuple
 from api.v1.auth.auth import Auth
 import base64
 
@@ -51,3 +51,23 @@ class BasicAuth(Auth):
             return token.decode('utf-8')
         except (UnicodeDecodeError, Exception):
             return None
+
+    def extract_user_credentials(self, decoded_base64_authorization_header:
+                                 str) -> Tuple[str, str]:
+        """
+        This is a method that retrieves the email and password from a decoded
+        base64 string and returns the extracted or retrieved email/password
+
+        Args:
+             decoded_base64_authorization_header(str): Decoded base64 string
+
+        Returns:
+            (str, str)(tuple): a tuple with the value of email and password
+            If not found or decoded value not valid, then return a tuple of
+            (None, None)
+        """
+        if ((decoded_base64_authorization_header is None) or
+           (type(decoded_base64_authorization_header) is not str) or
+           (':' not in decoded_base64_authorization_header)):
+            return (None, None)
+        return tuple(decoded_base64_authorization_header.split(':'))
