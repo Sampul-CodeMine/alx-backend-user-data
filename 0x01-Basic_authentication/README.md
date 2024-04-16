@@ -1,6 +1,8 @@
 # 0x01. Basic authentication - (Back-end | Authentification)
-<p style="width: 300px; height: auto; margin: 5px auto;">
-<img src="https://github.com/Sampul-CodeMine/alx-backend-user-data/blob/main/0x01-Basic_authentication/misc/failed_pass.png" alt="You Shall Not Pass" style="width: 250px" align="center"></p>
+
+<p style="width: 350px; height: auto; margin: 5px auto;" align="center">
+<img src="https://github.com/Sampul-CodeMine/alx-backend-user-data/blob/main/0x01-Basic_authentication/misc/failed_pass.png" alt="You Shall Not Pass" style="width: 300px;" align="center"></p>
+
 ## Background Context
 
 In this project, you will learn what the authentication process means and implement a Basic Authentication on a simple API.
