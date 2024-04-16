@@ -11,7 +11,7 @@ class BasicAuth(Auth):
     def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         """
-        This is a puvblic method that returns a base64 part of an
+        This is a public method that returns a base64 part of an
         Authorization header for a Basic Access Authentication
 
         Args:
@@ -27,3 +27,27 @@ class BasicAuth(Auth):
            (not authorization_header.startswith('Basic '))):
             return None
         return authorization_header.split(" ")[-1]
+
+    def decode_base64_authorization_header(self,
+                                           base64_authorization_header:
+                                           str) -> str:
+        """This is a public method that implements decoding a base64 encoded
+        data into plain string
+
+        Args:
+            base64_authorization_header(str): encoded base64 string
+
+        Returns:
+            None if base64_authorization_header is None or not a string or
+            is not a valid base64 string
+            (str) - The decoded utf-8 string or value
+        """
+        if ((base64_authorization_header is None) or
+           (type(base64_authorization_header) is not str)):
+            return None
+        try:
+            token = base64.b64decode(base64_authorization_header,
+                                     validate=True)
+            return token.decode('utf-8')
+        except (UnicodeDecodeError, Exception):
+            return None
