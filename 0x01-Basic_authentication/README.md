@@ -1,6 +1,6 @@
 # 0x01. Basic authentication - (Back-end | Authentification)
 
-<img src="" alt="You Shall Not Pass" style="width: 150px" align="center">
+<img src="https://github.com/Sampul-CodeMine/alx-backend-user-data/blob/main/0x01-Basic_authentication/misc/failed_pass.png" alt="You Shall Not Pass" style="width: 150px" align="center">
 ## Background Context
 
 In this project, you will learn what the authentication process means and implement a Basic Authentication on a simple API.
@@ -22,7 +22,7 @@ In the industry, you should not implement your own Basic authentication system a
 > - <a href="https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/" target="_blank">Custom Error Pages</a>
 > - <a href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint.before_request" target="_blank">`before_request`</a>Flask Method
 >
-> Use the contents in <a href="" target="_blank">this zip folder</a> to start your project.
+> Use the contents in <a href="https://github.com/Sampul-CodeMine/alx-backend-user-data/blob/main/0x01-Basic_authentication/misc/SimpleAPI.zip" target="_blank">this zip folder</a> to start your project.
 
 ## Learning Objectives
 
