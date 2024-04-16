@@ -1,7 +1,7 @@
-SimpleAPI/.venv/
+.venv/
 __pycache__/*
-**/SimpleAPI/__pycache__/*
-**/SimpleAPI/api/__pycache__/*
-**/SimpleAPI/api/v1/__pycache__/*
-**/SimpleAPI/api/v1/views/__pycache__/*
-**/SimpleAPI/models/__pycache__/*
+**/__pycache__/*
+**/api/__pycache__/*
+**/api/v1/__pycache__/*
+**/api/v1/views/__pycache__/*
+**/models/__pycache__/*
