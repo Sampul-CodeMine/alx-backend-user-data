@@ -4,6 +4,7 @@ from flask import request
 from uuid import uuid4 as uid
 from api.v1.auth.auth import Auth
 from models.user import User
+from typing import TypeVar
 
 
 class SessionAuth(Auth):
@@ -39,3 +40,17 @@ class SessionAuth(Auth):
         if not type(session_id) == str or session_id is None:
             return None
         return self.user_id_by_session_id.get(session_id, None)
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """This is a method that gets a User's object from a request
+
+        Args:
+            request (optional): Defaults to None.
+
+        Returns:
+            TypeVar('User): The User object from a request
+        """
+        print(self.user_id_for_session_id(self.session_cookie(request)))
+        user_id = self.user_id_for_session_id(self.session_cookie(request))
+        print(user_id, User.get(user_id))
+        return User.get(user_id)
