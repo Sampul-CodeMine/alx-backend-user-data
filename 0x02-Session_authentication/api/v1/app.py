@@ -22,7 +22,7 @@ AUTH_TYPE = os.environ.get('AUTH_TYPE')
 if AUTH_TYPE == 'auth':
     from api.v1.auth.auth import Auth
     auth = Auth()
-if AUTH_TYPE == 'basic_auth':
+elif AUTH_TYPE == 'basic_auth':
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 
@@ -44,10 +44,14 @@ def auth_before_request():
         if auth.require_auth(request.path, excluded_paths):
             auth_header = auth.authorization_header(request)
             user = auth.current_user(request)
+
             if auth_header is None:
                 abort(401)
             if user is None:
                 abort(403)
+            request.current_user = user
+    else:
+        pass
 
 
 @app.errorhandler(401)
