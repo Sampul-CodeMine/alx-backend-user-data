@@ -13,7 +13,7 @@ from typing import Tuple
 def user_login() -> Tuple[str, int]:
     """This is a function to log user in using the POST method in the route
     POST /api/v1/auth_session/login
-    
+
     Returns:
         JSON repr of a User object
     """
@@ -23,7 +23,7 @@ def user_login() -> Tuple[str, int]:
         return jsonify({'error': 'email missing'}), 400
     if passwd is None or len(passwd) == 0:
         return jsonify({'error': 'password missing'}), 400
-    
+
     try:
         users_obj = User.search({'email': email})
     except Exception:
