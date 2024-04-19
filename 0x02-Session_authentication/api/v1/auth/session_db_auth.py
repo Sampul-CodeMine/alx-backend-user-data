@@ -2,7 +2,7 @@
 """ Module of Authenitcation using Session Authentication stored in a DB"""
 from flask import request
 from datetime import datetime, timedelta
-from models.user_sessiion import UserSession
+from models.user_session import UserSession
 from .session_exp_auth import SessionExpAuth
 
 
