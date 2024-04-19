@@ -44,13 +44,15 @@ class SessionDBAuth(SessionExpAuth):
         if session_id is None:
             return None
         try:
+            UserSession.load_from_file()
             session_data = UserSession.search({'session_id': session_id})
-            start_time = datetime.now()
-            duration = timedelta(seconds=self.session_duration)
-            expry_time = session_data[0]['created_at'] + duration
-            if expry_time < start_time:
-                return None
-            return session_data[0]['user_id']
+            for user in session_data:
+                start_time = datetime.now()
+                duration = timedelta(seconds=self.session_duration)
+                expry_time = user.created_at + duration
+                if expry_time < start_time:
+                    return None
+                return user.user_id
         except Exception:
             return None
 
@@ -73,4 +75,5 @@ class SessionDBAuth(SessionExpAuth):
         if len(user_sess) <= 0:
             return False
         user_sess[0].remove()
+        UserSession.save_to_file()
         return True
