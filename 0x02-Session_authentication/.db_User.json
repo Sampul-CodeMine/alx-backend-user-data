@@ -1,1 +1,11 @@
-{"7c397e28-a2f2-4681-8dd6-199f3166cdbc": {"id": "7c397e28-a2f2-4681-8dd6-199f3166cdbc", "created_at": "2024-04-18T17:20:25", "updated_at": "2024-04-18T17:20:25", "email": "bobsession@hbtn.io", "_password": "7a321db83885ebbe8358bc1160c803af6cc70c80aa8f750eeb9d21d5f8c75967", "first_name": null, "last_name": null}}
+{
+    "7c397e28-a2f2-4681-8dd6-199f3166cdbc": {
+        "id": "7c397e28-a2f2-4681-8dd6-199f3166cdbc",
+        "created_at": "2024-04-18T17:20:25",
+        "updated_at": "2024-04-18T17:20:25",
+        "email": "bobsession@hbtn.io",
+        "_password": "7a321db83885ebbe8358bc1160c803af6cc70c80aa8f750eeb9d21d5f8c75967",
+        "first_name": "Bally",
+        "last_name": "Raymond"
+    }
+}
