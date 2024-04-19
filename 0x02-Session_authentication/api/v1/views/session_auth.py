@@ -2,7 +2,7 @@
 """This is a moduke to authenticate session views
 """
 import os
-from flask import jsonify, request
+from flask import abort, jsonify, request
 from models.user import User
 from api.v1.views import app_views
 
@@ -37,3 +37,18 @@ def user_login():
         return jsonify({'error': 'wrong password'}), 401
     except Exception:
         return jsonify({'error': 'no user found for this email'}), 404
+
+
+@app_views.route('/auth_session/logout', methods=['DELETE'],
+                 strict_slashes=False)
+def user_logout():
+    """This is a function to delete a session id and log out the user
+    using the DELETE method in the route POST /api/v1/auth_session/logout
+
+    Returns:
+        JSON repr of an empty dictionary
+    """
+    from api.v1.app import auth
+    if auth.destroy_session(request):
+        return jsonify({}), 200
+    abort(404)
