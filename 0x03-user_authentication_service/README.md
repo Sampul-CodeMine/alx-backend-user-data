@@ -39,26 +39,27 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 - Only public methods of `Auth` and `DB` should be used outside these classes
 
 >
-> Setup
+> **Setup**
+>
 > You will need to install `bcrypt`
 >
-> ```pip3 install bcrypt```
+> `pip3 install bcrypt`
 >
 
-## T A S K   R E Q U I R E M E N T S
+## TASK REQUIREMENTS
 
-# User Authentication Service
+### User Authentication Service
 
 This project contains tasks for learning to create a user authentication service.
 
-## Requirements
+#### Requirements
 
 + SQLAlchemy 1.3.x
 + pycodestyle 2.5
 + bcrypt
 + python3 3.7
 
-## Tasks To Complete
+#### Tasks To Complete
 
 + [x] 0. **User model**<br />[user.py](user.py) contains a SQLAlchemy model named `User` for a database table named `users` (by using the [mapping declaration](https://docs.sqlalchemy.org/en/13/orm/tutorial.html#declare-a-mapping) of SQLAlchemy) and meets the following requirements:
   + The model will have the following attributes:
@@ -261,6 +262,7 @@ This project contains tasks for learning to create a user authentication service
 
         register_user(EMAIL, PASSWD)
         log_in_wrong_password(EMAIL, NEW_PASSWD)
+
 ---
 
 Dukeson Ehigboria
