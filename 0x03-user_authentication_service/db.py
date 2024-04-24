@@ -4,6 +4,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.exc import InvalidRequestError
+from sqlalchemy.orm.exc import NoResultFound
 
 from user import Base, User
 
@@ -48,3 +50,21 @@ class DB:
             user = None
         finally:
             return user
+
+    def find_user_by(self, **kwargs: dict) -> User:
+        """This is a method to find a user from the database
+
+        Args:
+            kwargs(dict): keyworded argument with which to search for user
+
+        Returns:
+            User(obj): The instance of the user found.
+        """
+        users = self._session.query(User)
+        for field, value in kwargs.items():
+            if field not in User.__dict__:
+                raise InvalidRequestError
+            for user in users:
+                if getattr(user, field) == value:
+                    return user
+        raise NoResultFound
