@@ -108,7 +108,7 @@ class Auth:
                 return None
         return None
 
-    def destroy_session(self, user_id: str) -> None:
+    def destroy_session(self, user_id: int) -> None:
         """This is a method to destroy the session of the currently validated
         or logged in user and update their session_id attribute
 

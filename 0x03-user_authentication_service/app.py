@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ A Basic Flask Application Module """
-from flask import (Flask, abort, jsonify, request, redirect)
+from flask import (Flask, abort, jsonify, request, redirect, url_for)
 from auth import Auth
 
 
@@ -43,6 +43,18 @@ def login() -> str:
             resp.set_cookie('session_id', sess_id)
             return resp
     abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """This is a route to log users out"""
+    if request.method == 'DELETE':
+        sess_id = request.cookies.get('session_id')
+        user = AUTH.get_user_from_session_id(sess_id)
+        if user:
+            AUTH.destroy_session(user.id)
+            return redirect(url_for('home'))
+    abort(403)
 
 
 if __name__ == '__main__':
