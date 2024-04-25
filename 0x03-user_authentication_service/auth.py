@@ -88,3 +88,42 @@ class Auth:
             return None
         except NoResultFound:
             return None
+
+    def get_user_from_session_id(self, session_id: str) -> User:
+        """This is a method to get a User details from the seesion ID of the
+        currently logged in or validated user.
+
+        Args:
+            session_id(str, required): The session_id of the currently logged
+            in user
+
+        Returns:
+            If found return User(obj) else return None
+        """
+        if session_id is not None:
+            try:
+                user = self._db.find_user_by(session_id=session_id)
+                return user if user is not None else None
+            except (NoResultFound, Exception):
+                return None
+        return None
+
+    def destroy_session(self, user_id: str) -> None:
+        """This is a method to destroy the session of the currently validated
+        or logged in user and update their session_id attribute
+
+        Args:
+            user_id(int, required): The user_id of the currently logged
+            in user
+
+        Returns:
+            None
+        """
+        if user_id is not None:
+            try:
+                user = self._db.find_user_by(id=user_id)
+                if user:
+                    user.session_id = None
+            except (NoResultFound, Exception):
+                return None
+        return None
