@@ -57,15 +57,15 @@ def logout() -> str:
     abort(403)
 
 
-# @app.route('/profile', methods=['GET'], strict_slashes=False)
-# def user_profile() -> str:
-#     """This is a route to display the users's profile"""
-#     if request.method == 'GET':
-#         sess_id = request.cookies.get('session_id')
-#         user = AUTH.get_user_from_session_id(sess_id)
-#         if user:
-#             return jsonify({'email': f'{user.email}'}), 200
-#     abort(403)
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def user_profile() -> str:
+    """This is a route to display the users's profile"""
+    if request.method == 'GET':
+        sess_id = request.cookies.get('session_id')
+        user = AUTH.get_user_from_session_id(sess_id)
+        if user:
+            return jsonify({'email': f'{user.email}'}), 200
+    abort(403)
 
 
 # @app.route('/reset_password', methods=['POST'], strict_slashes=False)
