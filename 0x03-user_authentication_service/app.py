@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """ A Basic Flask Application Module """
+from flask import (Flask, abort, jsonify, request, redirect)
 from auth import Auth
-from flask import (Flask, jsonify, request)
 
 
 app = Flask(__name__)
 app.debug = False
-auth = Auth()
+AUTH = Auth()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
@@ -24,8 +24,9 @@ def users() -> str:
         password = request.form.get('password')
 
         try:
-            user = auth.register_user(email, password)
-            return jsonify({'email': user.email, 'message': 'user created'})
+            AUTH.register_user(email, password)
+            msg = {'email': f"{email}", 'message': 'user created'}
+            return jsonify(msg), 200
         except Exception:
             return jsonify({'message': 'email already registered'}), 400
 
