@@ -121,9 +121,7 @@ class Auth:
         """
         if user_id is not None:
             try:
-                user = self._db.find_user_by(id=int(user_id))
-                if user:
-                    self._db.update_user(user_id, session_id=None)
+                self._db.update_user(user_id, session_id=None)
             except NoResultFound:
                 return None
         return None
