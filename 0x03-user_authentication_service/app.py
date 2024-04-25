@@ -83,19 +83,19 @@ def get_password_reset_token() -> str:
     abort(403)
 
 
-# @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
-# def update_password() -> str:
-#     """This is a route to reset the password"""
-#     if request.method == 'PUT':
-#         email = request.form.get('email')
-#         reset_token = request.form.get('reset_token')
-#         new_password = request.form.get('new_password')
-#         try:
-#             AUTH.update_password(reset_token, new_password)
-#             msg = {"email": email, "message": "Password updated"}
-#             return jsonify(msg), 200
-#         except Exception:
-#             abort(403)
+@app.route('/reset_password', methods=['PUT'], strict_slashes=False)
+def update_password() -> str:
+    """This is a route to reset the password"""
+    if request.method == 'PUT':
+        email = request.form.get('email')
+        reset_token = request.form.get('reset_token')
+        new_password = request.form.get('new_password')
+        try:
+            AUTH.update_password(reset_token, new_password)
+            msg = {"email": email, "message": "Password updated"}
+            return jsonify(msg), 200
+        except Exception:
+            abort(403)
 
 
 if __name__ == '__main__':
