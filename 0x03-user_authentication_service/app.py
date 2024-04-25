@@ -80,8 +80,8 @@ def get_password_reset_token() -> str:
                        {"email": f"{email}",
                         "reset_token": f"{reset_token}"}
                        ), 200
-    except ValueError:
-        abort(403)
+        except ValueError:
+            abort(403)
     abort(403)
 
 
