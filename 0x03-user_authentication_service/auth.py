@@ -136,14 +136,13 @@ class Auth:
         Returns:
             (str): UUID Token generated
         """
-        if email is not None:
-            try:
-                user = self._db.find_user_by(email=email)
-                reset_token = _generate_uuid()
-                self._db.update_user(user.id, reset_token=reset_token)
+        try:
+            user = self._db.find_user_by(email=email)
+            if user:
+                user.reset_token = _generate_uuid()
                 return reset_token
-            except NoResultFound:
-                raise ValueError
+        except NoResultFound:
+            raise ValueError
 
     # def update_password(self, reset_token: str, password: str) -> None:
     #     """This is a function that updates a user's password prior to
