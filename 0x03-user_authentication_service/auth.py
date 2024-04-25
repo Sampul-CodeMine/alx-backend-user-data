@@ -119,10 +119,11 @@ class Auth:
         Returns:
             None
         """
-        try:
-            self._db.update_user(user_id, session_id=None)
-        except NoResultFound:
-            return None
+        if user_id is not None:
+            try:
+                self._db.update_user(user_id, session_id=None)
+            except NoResultFound:
+                return None
         return None
 
     def get_reset_password_token(self, email: str) -> str:
