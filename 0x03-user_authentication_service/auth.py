@@ -138,8 +138,11 @@ class Auth:
         """
         try:
             user = self._db.find_user_by(email=email)
-            user.reset_token = _generate_uuid()
-            return reset_token
+            if user is not None:
+                reset_token = _generate_uuid()
+                user.reset_token = reset_token
+                return reset_token
+            raise ValueError
         except NoResultFound:
             raise ValueError
 
