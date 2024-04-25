@@ -31,5 +31,19 @@ def users() -> str:
             return jsonify({'message': 'email already registered'}), 400
 
 
+@app.route('/sessions', methods=['POST'], strict_slashes=False)
+def login() -> str:
+    """This is a route to log users into the system"""
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        if AUTH.valid_login(email, password):
+            sess_id = AUTH.create_session(email)
+            resp = jsonify({'email': email, 'message': 'logged in'})
+            resp.set_cookie('session_id', sess_id)
+            return resp
+    abort(401)
+
+
 if __name__ == '__main__':
     app.run(port="5000", host="0.0.0.0")
