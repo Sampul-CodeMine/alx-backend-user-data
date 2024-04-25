@@ -60,14 +60,14 @@ class DB:
         Returns:
             User(obj): The instance of the user found.
         """
-        users = self._session.query(User)
-        for field, value in kwargs.items():
-            if field not in User.__dict__:
-                raise InvalidRequestError
-            for user in users:
-                if getattr(user, field) == value:
-                    return user
-        raise NoResultFound
+        if kwargs is None or not kwargs:
+            raise InvalidRequestError
+
+        user = self._session.query(User).filter_by(**kwargs).first()
+
+        if not user:
+            raise NoResultFound
+        return user
 
     def update_user(self, user_id: int, **kwargs: dict) -> None:
         """This is a method to update a user data in the  database
@@ -79,13 +79,11 @@ class DB:
         Returns:
             Nothing
         """
-        try:
-            user = self.find_user_by(id=user_id)
-            for field, value in kwargs.items():
-                if hasattr(user, field):
-                    setattr(user, field, value)
-                else:
-                    raise ValueError()
-            self._session.commit()
-        except NoResultFound:
-            raise ValueError()
+        user = self.find_user_by(id=user_id)
+        for field, value in kwargs.items():
+            if hasattr(user, field):
+                setattr(user, field, value)
+            else:
+                raise ValueError
+        self._session.commit()
+        return None
