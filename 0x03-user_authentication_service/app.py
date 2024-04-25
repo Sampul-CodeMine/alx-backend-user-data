@@ -57,45 +57,45 @@ def logout() -> str:
     abort(403)
 
 
-@app.route('/profile', methods=['GET'], strict_slashes=False)
-def user_profile() -> str:
-    """This is a route to display the users's profile"""
-    if request.method == 'GET':
-        sess_id = request.cookies.get('session_id')
-        user = AUTH.get_user_from_session_id(sess_id)
-        if user:
-            return jsonify({'email': f'{user.email}'}), 200
-    abort(403)
+# @app.route('/profile', methods=['GET'], strict_slashes=False)
+# def user_profile() -> str:
+#     """This is a route to display the users's profile"""
+#     if request.method == 'GET':
+#         sess_id = request.cookies.get('session_id')
+#         user = AUTH.get_user_from_session_id(sess_id)
+#         if user:
+#             return jsonify({'email': f'{user.email}'}), 200
+#     abort(403)
 
 
-@app.route('/reset_password', methods=['POST'], strict_slashes=False)
-def get_password_reset_token() -> str:
-    """This is a route to get a reset password token when a user request
-    for password change"""
-    if request.method == 'POST':
-        user_email = request.form.get('email')
-        try:
-            reset_token = AUTH.get_reset_password_token(user_email)
-            msg = {"email": f"{email}", "reset_token": f"{reset_token}"}
-        return jsonify(msg), 200
-        except ValueError:
-            abort(403)
-    abort(403)
+# @app.route('/reset_password', methods=['POST'], strict_slashes=False)
+# def get_password_reset_token() -> str:
+#     """This is a route to get a reset password token when a user request
+#     for password change"""
+#     if request.method == 'POST':
+#         user_email = request.form.get('email')
+#         try:
+#             reset_token = AUTH.get_reset_password_token(user_email)
+#             msg = {"email": f"{email}", "reset_token": f"{reset_token}"}
+#         return jsonify(msg), 200
+#         except ValueError:
+#             abort(403)
+#     abort(403)
 
 
-@app.route('/reset_password', methods=['PUT'], strict_slashes=False)
-def update_password() -> str:
-    """This is a route to reset the password"""
-    if request.method == 'PUT':
-        email = request.form.get('email')
-        reset_token = request.form.get('reset_token')
-        new_password = request.form.get('new_password')
-        try:
-            AUTH.update_password(reset_token, new_password)
-            msg = {"email": email, "message": "Password updated"}
-            return jsonify(msg), 200
-        except Exception:
-            abort(403)
+# @app.route('/reset_password', methods=['PUT'], strict_slashes=False)
+# def update_password() -> str:
+#     """This is a route to reset the password"""
+#     if request.method == 'PUT':
+#         email = request.form.get('email')
+#         reset_token = request.form.get('reset_token')
+#         new_password = request.form.get('new_password')
+#         try:
+#             AUTH.update_password(reset_token, new_password)
+#             msg = {"email": email, "message": "Password updated"}
+#             return jsonify(msg), 200
+#         except Exception:
+#             abort(403)
 
 
 if __name__ == '__main__':
