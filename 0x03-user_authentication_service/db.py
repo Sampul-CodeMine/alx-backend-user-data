@@ -51,7 +51,7 @@ class DB:
         finally:
             return user
 
-    def find_user_by(self, **kwargs: dict) -> User:
+    def find_user_by(self, **kwargs) -> User:
         """This is a method to find a user from the database
 
         Args:
@@ -69,7 +69,7 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user(self, user_id: int, **kwargs: dict) -> None:
+    def update_user(self, user_id: int, **kwargs) -> None:
         """This is a method to update a user data in the  database
 
         Args:
