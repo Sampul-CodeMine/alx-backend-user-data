@@ -162,13 +162,11 @@ class Auth:
         """
         try:
             user = self._db.find_user_by(reset_token=reset_token)
-            print(dir(user), user.reset_token, user.session_id)
             if user is not None:
                 h_pass = _hash_password(password)
                 self._db.update_user(user.id,
                                      hashed_password=h_pass,
                                      reset_token=None)
-                print(dir(user), user.reset_token, user.session_id)
                 return None
             else:
                 raise ValueError
