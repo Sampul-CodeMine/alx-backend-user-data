@@ -42,6 +42,8 @@ def login() -> str:
             resp = jsonify({'email': email, 'message': 'logged in'})
             resp.set_cookie('session_id', sess_id)
             return resp
+        else:
+            abort(401)
     abort(401)
 
 
